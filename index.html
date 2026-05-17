@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Anti-FOUC theme bootstrap: apply the stored / system theme before paint. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          document.documentElement.style.colorScheme = theme;
+        } catch (_) {
+          // Storage unavailable — fall back to system preference via CSS only.
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="/src/assets/hero-image.jpg" as="image" type="image/jpeg" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"></noscript>
+    <link rel="stylesheet" href="/src/styles/print.css" media="print">
+    <title>Nexus — Lifestyle Blog for Culture, Work &amp; Everyday Ideas</title>
+    <meta name="description" content="Nexus is a lifestyle editorial covering fashion, technology, business, culture, and mindful everyday living." />
+    <meta name="author" content="Nexus Blog" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <link rel="canonical" href="https://lifestyle-blog.app/" />
+
+    <meta property="og:site_name" content="Nexus" />
+    <meta property="og:title" content="Nexus — Lifestyle Blog for Culture, Work & Everyday Ideas" />
+    <meta property="og:description" content="Fashion, technology, business, culture, and mindful everyday living from the Nexus editorial desk." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lifestyle-blog.app/social-card.svg" />
+    <meta property="og:url" content="https://lifestyle-blog.app/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nexus_blog" />
+    <meta name="twitter:title" content="Nexus — Lifestyle Blog for Culture, Work & Everyday Ideas" />
+    <meta name="twitter:description" content="Fashion, technology, business, culture, and mindful everyday living from the Nexus editorial desk." />
+    <meta name="twitter:image" content="https://lifestyle-blog.app/social-card.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://lifestyle-blog.app/#organization",
+          "name": "Nexus Blog",
+          "url": "https://lifestyle-blog.app/",
+          "logo": "https://lifestyle-blog.app/social-card.svg"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://lifestyle-blog.app/#website",
+          "url": "https://lifestyle-blog.app/",
+          "name": "Nexus",
+          "description": "Nexus is a lifestyle editorial covering fashion, technology, business, culture, and mindful everyday living.",
+          "publisher": { "@id": "https://lifestyle-blog.app/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://lifestyle-blog.app/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Blog",
+          "@id": "https://lifestyle-blog.app/#blog",
+          "name": "Nexus",
+          "description": "Fashion, technology, business, culture, and mindful everyday living from the Nexus editorial desk.",
+          "url": "https://lifestyle-blog.app/",
+          "publisher": { "@id": "https://lifestyle-blog.app/#organization" }
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded z-50">Skip to main content</a>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
